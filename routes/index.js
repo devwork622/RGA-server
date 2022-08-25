@@ -45,14 +45,18 @@ router.post('/', function (req, res, next) {
       });
       var str = "";
       let alertType;
+      let fDate = alertData[0].first_date.toString();
+      let sDate = alertData[0].second_date.toString();
+      if(fDate == sDate)  sDate = "";
+      else  sDate = " : " + sDate;
       detectedData.map((e, i) => {
         if (alertData[0].type == 1) {
           alertType = "PPU";
-          str += "Subject: "+ alertData[0].name + " - " + alertData[0].first_date + `: ${alertData[0].second_date}` + "\nBody: " + alertType + " - " + e[3] + " - " + e[2] + " - " + e[1] + "\n\n";
+          str += alertData[0].name + " - " + fDate + sDate + "\n" + alertType + " - " + e[3] + " - " + e[2] + " - " + e[1] + " -" + e[0] + "\n\n";
         }
         else {
           alertType = "DROP";
-          str += "Subject: "+ alertData[0].name + " - " + alertData[0].first_date + `: ${alertData[0].second_date}` + "\nBody: " + alertType + " - " + e[3] + " - " + e[2] + " - " + e[1] + "\nScheduled Trip:" + alertData[0].scheduled_trip + "\n\n";
+          str += alertData[0].name + " - " + fDate + sDate + "\n" + alertType + " - " + e[3] + " - " + e[2] + " - " + e[1] + " -" + e[0] + "\nScheduled Trip:" + alertData[0].scheduled_trip + "\n\n";
         }
       })
 
