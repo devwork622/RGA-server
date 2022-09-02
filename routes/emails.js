@@ -54,7 +54,6 @@ router.delete('/delete-email:id', function (req, res, next) {
         password: "",
         database: "ryan_db"
     });
-    console.log(typeof(req.params.id));
     
     con.connect(function (err) {
         if (err) console.log(err);

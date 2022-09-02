@@ -13,9 +13,9 @@ router.get('/', function (req, res, next) {
   });
 
   con.connect(function (err) {
-    if (err) throw err;
+    if (err) console.log(err);
     con.query("SELECT username, password FROM users LIMIT 1", function (err, result, fields) {
-      if (err) throw err;
+      if (err) console.log(err);
       console.log(result);
       res.send(result);
     });
@@ -34,7 +34,7 @@ router.post('/', function (req, res, next) {
 
   con.connect(function (err) {
     if (err) {
-      throw err;
+      console.log(err);
       console.log(err);
     }
     var first_sql = `SELECT COUNT(ID) AS row_ct FROM users`;
@@ -42,7 +42,7 @@ router.post('/', function (req, res, next) {
       if (result[0].row_ct == 0) {        
         var sql = `INSERT INTO users (username, password) VALUES ("${req.body.username}", "${req.body.password}")`;
         con.query(sql, function (err, result) {
-          if (err) throw err;
+          if (err) console.log(err);
           console.log("1 record inserted in users table");
           res.send('respond with a resource');
         });
@@ -53,7 +53,7 @@ router.post('/', function (req, res, next) {
           var updatedId = result[0].id;
           var sql = `UPDATE users SET username='${req.body.username}', password='${req.body.password}' WHERE id='${updatedId}'`;
           con.query(sql, function (err, result) {
-            if (err) throw err;
+            if (err) console.log(err);
             console.log("1 record updated in users table");
             res.send('respond with a resource');
           });
@@ -76,9 +76,9 @@ router.delete('/delete-item', function (req, res, next) {
   });
 
   con.connect(function (err) {
-    if (err) throw err;
+    if (err) console.log(err);
     con.query("DELETE FROM users", function (err, result, fields) {
-      if (err) throw err;
+      if (err) console.log(err);
       console.log("one username and passoword deleted successfully");
       res.send(result);
     });

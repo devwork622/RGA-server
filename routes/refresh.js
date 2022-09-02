@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "ryan_db"
+});
 
-router.post('/', function (req, res, next) {
-    var mysql = require('mysql');
-    var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "ryan_db"
-    });
+router.post('/', function (req, res, next) {    
 
     con.connect(function (err) {
         if (err) console.log(err);
@@ -49,16 +49,8 @@ router.post('/', function (req, res, next) {
 
 
 router.get('/', function (req, res, next) {
-    var mysql = require('mysql');
-    var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "ryan_db"
-    });
 
     con.connect(function (err) {
-        if (err) console.log(err);
         con.query("SELECT * FROM refresh", function (err, result, fields) {
             if (err) console.log(err);
             console.log(result);
