@@ -40,12 +40,22 @@ router.post('/', function (req, res, next) {
         });
 
         var str = "";
+
         detectedData.map((e) => {
-          let fDate = e[6];
-          let sDate = e[7];
-          if (e[6] == e[7]) sDate = "";
-          else sDate = " : " + sDate;
-          str += e[5] + " - " + fDate + sDate + "\n" + e[4] + " - " + e[3] + " - " + e[2] + " - " + e[1] + " -" + e[0] + "\n\n";
+          if(e.type == 2) {
+            let fDate = e.first_date;
+            let sDate = e.second_date;
+            if(e.first_date == e.second_date) sDate = "";
+            else sDate = " : " + sDate;
+            str += e.name + " - " + fDate + sDate + "\n" + "DROP" + "\n\n";
+          }
+          else {
+            let fDate = e[6];
+            let sDate = e[7];
+            if (e[6] == e[7]) sDate = "";
+            else sDate = " : " + sDate;
+            str += e[5] + " - " + fDate + sDate + "\n" + e[4] + " - " + e[3] + " - " + e[2] + " - " + e[1] + " -" + e[0] + "\n\n";
+          }
 
         })
 
