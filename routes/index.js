@@ -54,7 +54,7 @@ router.post('/', function (req, res, next) {
             let sDate = e[7];
             if (e[6] == e[7]) sDate = "";
             else sDate = " : " + sDate;
-            str += e[5] + " - " + fDate + sDate + "\n" + e[4] + " - " + e[3] + " - " + e[2] + " - " + e[1] + " -" + e[0] + "\n" + "---" + e[8] + "-"  + "R"  + "\n\n";
+            str += e[5] + " - " + fDate + sDate + "\n" + e[4] + " - " + e[3] + " - " + e[2] + " - " + e[1] + " -" + e[0] + "\n" + "----------" + "\n" + e[8] + " - "  + "R"  + "\n\n";
           }
 
         })
