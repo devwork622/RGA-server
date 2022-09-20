@@ -63,4 +63,11 @@ const options = {
   csr: fs.readFileSync("my.csr"),
 };
 
+process.on("uncaughtException", (error, origin) => {
+  console.log("----- Uncaught exception -----");
+  console.log(error);
+  console.log("----- Exception origin -----");
+  console.log(origin);
+});
+
 module.exports = app;
